@@ -30,7 +30,7 @@ class LogFunctionProcessor(
             classDecl.getAllFunctions()
                 .filter { func -> func.isPublicFunction() }
                 .forEach { func ->
-                    val funName = func.simpleName.asString()
+                    val funName = func.simpleName.asString()+"Logger"
                     val params = func.parameters.joinToString(", ") { param ->
                         val name = param.name?.asString() ?: "param"
                         val type = param.type.resolve().declaration.qualifiedName?.asString() ?: "Any"
@@ -53,7 +53,7 @@ class LogFunctionProcessor(
 
                     writer.write(" {\n")
                     writer.write("    Log.d(\"LogFunction\", \"$funName called\")\n")
-                    val call = "this.$funName($callParams)"
+                    val call = "this.${func.simpleName.asString()}($callParams)"
                     if (returnType != "kotlin.Unit") {
                         writer.write("    return $call\n")
                     } else {

@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
             ZebPayLoggerTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = add(2,3).toString(),
+                        name = Utils.addLogger(2,3).toString(),
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
